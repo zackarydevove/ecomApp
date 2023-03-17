@@ -26,13 +26,6 @@ app.use(cors({
     origin: 'https://ecom-app-tan.vercel.app',
     credentials: true
 }));
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'https://ecom-app-tan.vercel.app');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
-});
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
@@ -45,6 +38,13 @@ app.use(session({
       autoRemoveInterval: 10
     })
 }));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://ecom-app-tan.vercel.app');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 app.use(cookieParser(process.env.SESSION_SECRET));
 
 app.use(passport.initialize());
