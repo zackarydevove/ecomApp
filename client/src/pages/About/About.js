@@ -63,7 +63,7 @@ function About() {
                                 <div className='w-[25vw] h-[25vw] max-md:w-[90vw] max-md:h-[90vw] xl:w-[300px] xl:h-[300px] bg-zuckerberg bg-contain'/>
                             </div>
                             <div className='flex flex-col justify-center items-center'>
-                                <h2 className='font-bold text-base'>Zackary Devove</h2>
+                                <h2 className='font-bold text-base'>Mark Zuckerberg</h2>
                                 <p className='text-base'>President and Chief Executive Officer</p>
                             </div>
                         </div>
