@@ -41,7 +41,7 @@ function Profile() {
         axios({
           method: 'GET',
           withCredentials: true,
-          url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/user'
+          url: 'https://ecom-app-server.vercel.app/user'
         })
         .then((res) => setUser(res.data))
         .catch((err) => navigate('/login'))
@@ -51,7 +51,7 @@ function Profile() {
         axios({
             method: 'POST',
             withCredentials: true,
-            url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/logout'
+            url: 'https://ecom-app-server.vercel.app/logout'
         })
         .then((res) => navigate('/login'))
         .catch((err) => console.log(err))

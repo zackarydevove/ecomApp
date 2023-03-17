@@ -21,7 +21,7 @@ function SearchBar({hover_color = 'white'}) {
         axios({
             method: 'GET',
             withCredentials: true,
-            url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/products'
+            url: 'https://ecom-app-server.vercel.app/products'
         })
         .then((res) => setProducts(res.data))
         .catch((err) => console.log(err));
@@ -41,7 +41,7 @@ function SearchBar({hover_color = 'white'}) {
                 id: id,
             },
             withCredentials: true,
-            url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/cart',
+            url: 'https://ecom-app-server.vercel.app/cart',
         })
         .then((res) => {
             if (res.data === 'not login') {
