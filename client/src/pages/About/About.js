@@ -60,7 +60,7 @@ function About() {
                         </div>
                         <div className='flex flex-col justify-center items-center gap-5'>
                             <div className='w-[25vw] h-[25vw] max-md:w-[90vw] max-md:h-[90vw] xl:w-[300px] xl:h-[300px] relative overflow-hidden'>
-                                <div className='w-[25vw] h-[25vw] max-md:w-[90vw] max-md:h-[90vw] xl:w-[300px] xl:h-[300px] bg-me bg-contain'/>
+                                <div className='w-[25vw] h-[25vw] max-md:w-[90vw] max-md:h-[90vw] xl:w-[300px] xl:h-[300px] bg-zuckerberg bg-contain'/>
                             </div>
                             <div className='flex flex-col justify-center items-center'>
                                 <h2 className='font-bold text-base'>Zackary Devove</h2>

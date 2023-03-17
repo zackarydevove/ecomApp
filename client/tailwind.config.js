@@ -37,7 +37,7 @@ module.exports = {
         'product12': "url('./images/product12.png')",
         'shopwp': "url('./images/shopwp.png')",
         'mail': "url('./images/mail.svg')",
-        'me': "url('./images/me.png')",
+        'zuckerberg': "url('./images/zuckerberg.png')",
         'musk': "url('./images/musk.png')",
         'bezos': "url('./images/bezos.png')",
         'about1': "url('./images/about1.png')",
