@@ -26,7 +26,7 @@ function Login() {
               confirmPassword: confirmPassword,
             },
             withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/register',
+            url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/register',
           }).then((res) => {
             setDataRes(res.data);
             console.log(res.data);

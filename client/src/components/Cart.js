@@ -17,7 +17,7 @@ function Cart(props) {
       axios({
         method: 'GET',
         withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/user',
+        url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/user',
       })
         .then((res) => setUserCart(res.data.cart))
         .catch((err) => console.log(err));
@@ -49,7 +49,7 @@ function Cart(props) {
           add: add,
         },
         withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/cart/add',
+        url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/cart/add',
       })
         .then((res) => {
           setUserCart(res.data.cart);
@@ -63,7 +63,7 @@ function Cart(props) {
         method: 'POST',
         data: { id: id },
         withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/cart/delete',
+        url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/cart/delete',
       })
         .then((res) => {
           setUserCart(res.data.cart);
@@ -76,7 +76,7 @@ function Cart(props) {
         method: 'POST',
         data: { cart: userCart },
         withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/checkout',
+        url: 'https://ecom-app-server-nrxr7zfye-zackarydevove.vercel.app/checkout',
       })
         .then((res) => {
           console.log(res);
