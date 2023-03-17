@@ -26,12 +26,19 @@ app.use(cors({
     origin: 'https://ecom-app-tan.vercel.app',
     credentials: true
 }));
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'https://ecom-app-tan.vercel.app');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     store: MongoStore.create({ 
-      mongoUrl: 'mongodb://localhost/myapp',
+      mongoUrl: process.env.MONGODB_URL,
       collectionName: 'sessions',
       ttl: 3600,
       autoRemove: 'interval',
