@@ -11,7 +11,10 @@ const dotenv = require('dotenv').config();
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const productData = require('./data/products');
+const MongoStore = require('connect-mongo');
 
+
+mongoose.connect(process.env.MONGODB_URL);
 
 // Middleware
 
@@ -26,7 +29,14 @@ app.use(cors({
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: MongoStore.create({ 
+      mongoUrl: 'mongodb://localhost/myapp',
+      collectionName: 'sessions',
+      ttl: 3600,
+      autoRemove: 'interval',
+      autoRemoveInterval: 10
+    })
 }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 
@@ -36,7 +46,6 @@ app.use(passport.session());
 
 // MongoDB
 
-mongoose.connect(process.env.MONGODB_URL);
 
 const productSchema = new mongoose.Schema({
     _id: String,
