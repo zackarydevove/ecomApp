@@ -85,7 +85,7 @@ function About() {
                 <div className='w-[90vw] pt-6 pb-16 lg:w-1/2 lg:h-full bg-white flex flex-col justify-center items-center'>
                     <div className='w-[70%] h-1/2 flex flex-col items-start gap-5'>
                         <h2 className='text-3xl'>OUR HISTORY</h2>
-                        <p>Founded in 1999 in Paris, France, and quickly expanding to Europe, Zacktech started connecting people through innovative computer peripherals and many industry firsts, including the infrared cordless mouse, the thumb-operated trackball, the laser mouse, and more. We honor bold innovation and our founders, Elon Musk, Zackary Devove and Jeff Bezos.</p>
+                        <p>Founded in 1999 in Paris, France, and quickly expanding to Europe, Zacktech started connecting people through innovative computer peripherals and many industry firsts, including the infrared cordless mouse, the thumb-operated trackball, the laser mouse, and more. We honor bold innovation and our founders, Elon Musk, Mark Zuckerberg and Jeff Bezos.</p>
                     </div>
                 </div>
                 <div className='w-[90vw] h-[90vw] lg:w-1/2 lg:h-full bg-abouthistory bg-cover bg-no-repeat'/>
