@@ -41,7 +41,7 @@ function Profile() {
         axios({
           method: 'GET',
           withCredentials: true,
-          url: 'http://localhost:5000/user'
+          url: 'https://ecom-app-server.vercel.app/user'
         })
         .then((res) => setUser(res.data))
         .catch((err) => navigate('/login'))
@@ -51,7 +51,7 @@ function Profile() {
         axios({
             method: 'POST',
             withCredentials: true,
-            url: 'http://localhost:5000/logout'
+            url: 'https://ecom-app-server.vercel.app/logout'
         })
         .then((res) => navigate('/login'))
         .catch((err) => console.log(err))

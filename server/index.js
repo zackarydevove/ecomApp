@@ -20,7 +20,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://ecom-app.vercel.app',
     credentials: true
 }));
 app.use(session({
@@ -153,8 +153,8 @@ app.get('/auth/google',
 
 app.get('/auth/google/callback', // callback
   passport.authenticate('google', { 
-    failureRedirect: 'http://localhost:3000/login', 
-    successRedirect: 'http://localhost:3000/shop'
+    failureRedirect: 'https://ecom-app.vercel.app/login', 
+    successRedirect: 'https://ecom-app.vercel.app/shop'
     })
 );
 
@@ -213,7 +213,7 @@ app.get('/user', (req, res) => {
 // Check if user is authenticate, if not redirect him to /login
 app.get('/', (req, res) => {
     if (!req.user) {
-        res.redirect('http://localhost:3000/login');
+        res.redirect('https://ecom-app.vercel.app/login');
     }
 })
 
@@ -282,12 +282,12 @@ app.post('/checkout', (req, res) => {
                 quantity: item.quantity
             }
         }),
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/cancel'
+        success_url: 'https://ecom-app.vercel.app/success',
+        cancel_url: 'https://ecom-app.vercel.app/cancel'
     })
     .then((response) => {
         console.log(response);
-        if (response.success_url === 'http://localhost:3000/success') {
+        if (response.success_url === 'https://ecom-app.vercel.app/success') {
             const newHistory = new History ({
                 _id: req.user._id,
                 date: Date.now(),

@@ -26,7 +26,7 @@ function Login() {
               confirmPassword: confirmPassword,
             },
             withCredentials: true,
-            url: 'http://localhost:5000/register',
+            url: 'https://ecom-app-server.vercel.app/register',
           }).then((res) => {
             setDataRes(res.data);
             console.log(res.data);

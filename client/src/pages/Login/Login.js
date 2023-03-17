@@ -24,7 +24,7 @@ function Login() {
             password: password,
           },
           withCredentials: true,
-          url: 'http://localhost:5000/login',
+          url: 'https://ecom-app-server.vercel.app/login',
         }).then((res) => {
           setDataRes(res.data);
           console.log(res.data);
@@ -41,7 +41,7 @@ function Login() {
     };
 
     const googleLogin = () => {
-        window.open('http://localhost:5000/auth/google', '_self');
+        window.open('https://ecom-app-server.vercel.app/auth/google', '_self');
       }
 
   return (

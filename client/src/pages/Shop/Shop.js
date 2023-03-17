@@ -24,7 +24,7 @@ function Shop() {
         axios({
           method: 'GET',
           withCredentials: true,
-          url: 'http://localhost:5000/user',
+          url: 'https://ecom-app-server.vercel.app/user',
         })
         .then((res) => setUserCart(res.data.cart) )
         .catch((err) => console.log(err));
@@ -49,7 +49,7 @@ function Shop() {
                 id: id,
             },
             withCredentials: true,
-            url: 'http://localhost:5000/cart',
+            url: 'https://ecom-app-server.vercel.app/cart',
         })
         .then((res) => {
             if (res.data === 'not login') {
@@ -64,7 +64,7 @@ function Shop() {
         axios({
             method: 'GET',
             withCredentials: true,
-            url: 'http://localhost:5000/products'
+            url: 'https://ecom-app-server.vercel.app/products'
         })
         .then((res) => setProducts(res.data))
         .catch((err) => console.log(err));
@@ -81,9 +81,6 @@ function Shop() {
         setQuery(newQuery);
         console.log(query);
     }
-
-    
-
 
   return (
     <div className='overflow-hidden'>
