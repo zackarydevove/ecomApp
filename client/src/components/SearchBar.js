@@ -71,7 +71,7 @@ function SearchBar({hover_color = 'white'}) {
                                     return (
                                                 <div className='w-full flex p-3'>
                                                     {/* Left */}
-                                                    <div className='w-24 h-32 bg-black'/>
+                                                    <div className={`w-24 h-32 bg-product${item._id} bg-contain bg-center bg-no-repeat`}/>
                                                     {/* Right */}
                                                     <div className='flex flex-col flex-grow pl-2'>
                                                         {/* Up */}
