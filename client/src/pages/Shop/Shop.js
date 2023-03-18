@@ -157,7 +157,7 @@ function Shop() {
                         }
                     </div>
                     <hr className='w-[100%] text-light_grey'/>
-                    <h1 className='font-bold text-xl'>group</h1>
+                    <h1 className='font-bold text-xl'>COLLECTION</h1>
                     <div>
                         {
                             group.map((item) => {
