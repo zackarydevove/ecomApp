@@ -1,5 +1,5 @@
 <h1>Zacktech E-commerce Website</h1>
-Welcome to my first fullstack MERN web app project, an E-commerce website called Zacktech! In this project, I implemented authentication using Passport, both local and Google, integrated Stripe for payment processing, and more features you can see down below.
+This is an E-commerce website called Zacktech! The UI is inspired by Logitech, implemented with the MERN Stack and Tailwind, authentication using Passport, both local and Google, Stripe for payment processing, and more features you can see down below.
 
 <h2>Demo</h2>
 You can check out a live demo of the project <a href="https://ecom-app-tan.vercel.app/" target="_blank">here</a>.
@@ -15,7 +15,7 @@ You can check out a live demo of the project <a href="https://ecom-app-tan.verce
 <li>Edit profile</li>
 </ul>
 
-<h2>Technologies Used</h2>
+<h2>Tech stack</h2>
 <li>MongoDB for database management</li>
 <li>Express for server-side routing</li>
 <li>React for client-side views</li>
