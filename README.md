@@ -26,7 +26,7 @@ You can check out a live demo of the project <a href="https://ecom-app-tan.verce
 
 <h2>Conclusion</h2>
 
-Thank you for checking out my first fullstack MERN web app project! I hope you find it useful and informative. If you have any questions or feedback, feel free to contact me at Zackary.devove@hotmail.com or on my social media (Twitter / LinkedIn).
+Thank you for checking out my first fullstack MERN web app project! I hope you find it useful and informative. If you have any questions or feedback, feel free to contact me at Zackary.devove@hotmail.com or on my social media (<a href='https://twitter.com/ZackaryDevove'>Twitter</a> / <a href='https://www.linkedin.com/in/zackarydevove/'>LinkedIn</a>).
 
 <h1>Screenshot of the Project</h1>
 
