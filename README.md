@@ -2,7 +2,7 @@
 This is an E-commerce website called Zacktech! The UI is inspired by Logitech, implemented with the MERN Stack and Tailwind, authentication using Passport, both local and Google, Stripe for payment processing, and more features you can see down below.
 
 <h2>Demo</h2>
-You can check out a live demo of the project <a href="https://ecom-app-tan.vercel.app/" target="_blank">here</a>.
+You can check out a live demo of the project <a href="https://ecom-app-server.vercel.app/" target="_blank">here</a>.
 
 <h2>Features</h2>
 <ul>
