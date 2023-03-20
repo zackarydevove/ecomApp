@@ -208,12 +208,12 @@ app.post('/login', (req, res, next) => {
     }) (req,res,next);
 })
 
-app.post('/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) console.log(err);
-        else res.send('Logout successfully');
-    });
-});
+// app.post('/logout', (req, res) => {
+//     req.logout((err) => {
+//         if (err) console.log(err);
+//         else res.send('Logout successfully');
+//     });
+// });
 
 // req.user contain all the data in of user in the cookie
 app.get('/user', (req, res) => {
