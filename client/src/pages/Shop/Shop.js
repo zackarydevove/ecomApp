@@ -1,72 +1,59 @@
 import React from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
+import { getUser } from '../../api/auth';
+import { getProducts, cart } from '../../api/product'
+
 
 function Shop() {
     const [products, setProducts] = useState([]);
     const [query, setQuery] = useState([]);
     const [userCart, setUserCart] = useState([]);
+    const [update, setUpdate] = useState(false);
     const [total, setTotal] = useState(0);
-    const [renderCart, setRenderCart] = useState(0);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
-    console.log(query);
     const peripheral = ['Headphone', 'Keyboard', 'Mouse', 'Speaker', 'Tablet'];
     const group = ['M', 'X', 'B'];
 
     useEffect(() => {
-        axios({
-          method: 'GET',
-          withCredentials: true,
-          url: 'https://ecom-app-server.vercel.app/user',
+        getUser()
+        .then((res) => {
+            setUserCart(res.cart);
         })
-        .then((res) => setUserCart(res.data.cart) )
         .catch((err) => console.log(err));
-    }, [renderCart]);
+    }, []);
 
     useEffect(() => {
         if (userCart){
             let sum = 0;
             userCart.forEach((item) => {
-                sum += item.quantity * Number(item.product.price);
+                sum += item.quantity * Number(item.product[0].price);
             });
             setTotal(sum);
         }
     }, [userCart]);
 
-    function addToCart(id){
-        setRenderCart(renderCart + 1);
-        console.log(renderCart);
-        axios({
-            method: 'POST',
-            data: {
-                id: id,
-            },
-            withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/cart',
-        })
+    function addToCart(productId){
+        cart(productId)
         .then((res) => {
-            if (res.data === 'not login') {
+            if (res === null) {
                 navigate('/login');
+            } else {
+                setUpdate(prev => !prev);
             }
         })
         .catch((err) => console.log(err));
     }
 
-
     useEffect(() => {
-        axios({
-            method: 'GET',
-            withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/products'
-        })
-        .then((res) => setProducts(res.data))
+        getProducts()
+        .then((res) => setProducts(res))
         .catch((err) => console.log(err));
     }, [])
 
@@ -79,14 +66,13 @@ function Shop() {
             newQuery.push(string);
         }
         setQuery(newQuery);
-        console.log(query);
     }
 
   return (
     <div className='overflow-hidden'>
         {/* Page 1 */}
         <div className='w-screen h-[50vh] bg-shopwp bg-no-repeat bg-cover bg-center overflow-hidden'>
-            <Navbar userCart={userCart} total={total} />
+            <Navbar update={update} />
         </div>
 
         {/* Page 2 */}
@@ -180,8 +166,6 @@ function Shop() {
                 <div className='w-[100%] flex flex-wrap '>
                 {
                       products.map((item) => {
-                        console.log(item._id)
-                        console.log(`bg-product${item._id}`);
                         const matchesQuery = query.length === 0 || (query.includes(item.type) || query.includes(item.group));
                         return (
                           matchesQuery ? (

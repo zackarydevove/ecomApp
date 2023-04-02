@@ -1,8 +1,8 @@
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { getUser } from '../../api/auth';
 
 function Profile() {
     const [user, setUser] = useState({});
@@ -35,37 +35,20 @@ function Profile() {
 
     const navigate = useNavigate();
 
-    console.log(user);
-
     useEffect(() => {
-        axios({
-          method: 'GET',
-          withCredentials: true,
-          url: 'https://ecom-app-server.vercel.app/user'
+        getUser()
+        .then((res) => {
+            setUser(res);
         })
-        .then((res) => setUser(res.data))
-        .catch((err) => navigate('/login'))
+        .catch((err) => console.log(err));
     }, [])
 
     const handleDisconnect = () => {
-        axios({
-            method: 'POST',
-            withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/logout'
-        })
-        .then((res) => navigate('/login'))
-        .catch((err) => console.log(err))
+        localStorage.removeItem('jwtToken');
+        navigate('/');
     }
 
     function handleEdit(index){
-        // if (editable[index].boolean === true && editable[index].text === 'CONFIRM') {
-        //     axios({
-        //         method: 'POST',
-        //         data: {
-                    
-        //         }
-        //     })
-        // }
         let newEditable = [...editable];
         newEditable[index].boolean = !newEditable[index].boolean;
         if (newEditable[index].boolean === true) {
@@ -77,7 +60,7 @@ function Profile() {
     }
 
     if (!user) {
-        return (navigate('/login'));
+        navigate('/login')
     }
 
     return (
@@ -160,7 +143,7 @@ function Profile() {
                                         { 
                                             history.cart.map(item => {
                                                 return (
-                                                    <p>{item.quantity}x {item.product.name} ${(item.product.price * item.quantity) / 100}</p>
+                                                    <p>{item.quantity}x {item.product[0].name} ${(item.product[0].price * item.quantity) / 100}</p>
                                                 )
                                             })
                                         }
@@ -170,7 +153,7 @@ function Profile() {
                                     {(() => {
                                             let total = 0;
                                             for (let i = 0; i < history.cart.length; i++) {
-                                            total += history.cart[i].quantity * history.cart[i].product.price;
+                                            total += history.cart[i].quantity * history.cart[i].product[0].price;
                                             }
                                             return (`$${total/100}`);
                                         })()

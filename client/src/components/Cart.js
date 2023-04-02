@@ -3,86 +3,62 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import { AiOutlineUp, AiOutlineDown, AiFillCheckCircle } from 'react-icons/ai';
 import { BiTrash } from 'react-icons/bi';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../api/auth';
+import { addCart, deleteCart, checkout } from '../api/product';
 
-function Cart(props) {
+function Cart({update}) {
     const [openCart, setOpenCart] = useState(false);
-    const [userCart, setUserCart] = useState(props.userCart);
-    const [total, setTotal] = useState(props.total);
+    const [userCart, setUserCart] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [updateLocal, setUpdateLocal] = useState(false);
   
     const navigate = useNavigate();
   
     useEffect(() => {
-      axios({
-        method: 'GET',
-        withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/user',
-      })
-        .then((res) => setUserCart(res.data.cart))
+        getUser()
+        .then((res) => setUserCart(res.cart))
         .catch((err) => console.log(err));
-    }, []);
-  
+    }, [update, updateLocal]);
+
     useEffect(() => {
       if (userCart) {
         let sum = 0;
-        userCart.forEach((item) => {
-          sum += item.quantity * Number(item.product.price);
+        userCart?.forEach((item) => {
+          sum += item.quantity * Number(item.product[0].price);
         });
         setTotal(sum);
       }
     }, [userCart]);
-  
-    useEffect(() => {
-      setUserCart(props.userCart);
-    }, [props.userCart]);
   
     const handleClick = () => {
       setOpenCart(!openCart);
     };
   
     const updateCart = (index, add) => {
-      axios({
-        method: 'POST',
-        data: {
-          index: index,
-          add: add,
-        },
-        withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/cart/add',
-      })
+        addCart(index, add)
         .then((res) => {
-          setUserCart(res.data.cart);
+          setUserCart(res.cart);
+          setUpdateLocal(prev => !prev);
         })
         .catch((err) => console.log(err));
     };
   
-    const deleteItem = (index, id) => {
-      console.log(id);
-      axios({
-        method: 'POST',
-        data: { id: id },
-        withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/cart/delete',
+    const deleteItem = (id) => {
+      deleteCart(id)
+      .then((res) => {
+        setUserCart(res.cart);
+        setUpdateLocal(prev => !prev);
       })
-        .then((res) => {
-          setUserCart(res.data.cart);
-        })
-        .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
     };
   
-    const checkout = () => {
-      axios({
-        method: 'POST',
-        data: { cart: userCart },
-        withCredentials: true,
-        url: 'https://ecom-app-server.vercel.app/checkout',
+    const handleCheckout = () => {
+      checkout(userCart)
+      .then((res) => {
+        window.open(res.url, '_blank');
       })
-        .then((res) => {
-          console.log(res);
-          window.open(res.data.url, '_blank');
-        })
-        .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
     };
   
 
@@ -141,15 +117,15 @@ function Cart(props) {
                                 <hr className='w-full text-light_grey'/>
                             </div>
                             <div className='text-black h-[72%] overflow-y-scroll flex flex-col gap-10 p-5 z-50'>
-                                    {userCart.map((item, index) => {
+                                    {userCart && userCart.map((item, index) => {
                                         return (
                                             <div key={index} className='flex gap-5 relative'>
                                                 <BiTrash size='1.3em' className='absolute top-0 right-0 hover:cursor-pointer'
-                                                    onClick={() => deleteItem(index, item._id)}/>
-                                                <p className='absolute bottom-0 right-0'>${((item.product.price / 100) * item.quantity).toFixed(2)}</p>
-                                                <div className={`w-24 h-32 bg-product${item.product._id} bg-center bg-contain bg-no-repeat`}/>
+                                                    onClick={() => deleteItem(item._id)}/>
+                                                <p className='absolute bottom-0 right-0'>${((item.product[0].price / 100) * item.quantity).toFixed(2)}</p>
+                                                <div className={`w-24 h-32 bg-product${item.product[0]._id} bg-center bg-contain bg-no-repeat`}/>
                                                 <div className='flex flex-col justify-between'>
-                                                    <p className='font-bold'>{item.product.name}</p>
+                                                    <p className='font-bold'>{item.product[0].name}</p>
                                                     <div className='w-32 h-1/2 border flex justify-around items-center'>
                                                         <div className='flex justify-center items-center w-[33%] h-[80%] hover:bg-footer hover:text-white hover:cursor-pointer'>
                                                             <AiOutlineUp onClick={() => updateCart(index, 1)} />
@@ -168,7 +144,7 @@ function Cart(props) {
                                 <hr className='w-full text-light_grey'/>
                                 <p>Total: ${(total / 100).toFixed(2)} </p>
                                 <button className='bg-footer text-white p-5 w-[50%] hover:bg-white hover:text-black hover:border transition'
-                                    onClick={checkout}>Checkout</button>
+                                    onClick={handleCheckout}>Checkout</button>
                             </div>
                         </div>
                 }

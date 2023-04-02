@@ -1,37 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { FaLock, FaUser } from 'react-icons/fa'
-import { AiFillTwitterCircle, AiFillGoogleCircle } from 'react-icons/ai'
-import { IoLogoFacebook } from 'react-icons/io'
-import { Link, navigate, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { AiFillGoogleCircle } from 'react-icons/ai'
+import { Link, useNavigate } from 'react-router-dom'
+import { login } from '../../api/auth'
+import { getUser } from '../../api/auth'
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [dataRes, setDataRes] = useState({});
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+      getUser()
+      .then((user) => {
+        if (user) {
+          navigate('/profile')
+        }
+      })
+      .catch((err) => console.log(err));
+    }, [])
+
     const handleClick = () => {
-      console.log(email);
-      console.log(password);
-        axios({
-          method: 'POST',
-          data: {
-            email: email,
-            password: password,
-          },
-          withCredentials: true,
-          url: 'https://ecom-app-server.vercel.app/login',
-        }).then((res) => {
-          setDataRes(res.data);
-          console.log(res.data);
-          console.log(dataRes);
-          if (res.data === 'no user exists') {
+      login(email, password)  
+      .then((res) => {
+          if (res === 'no user exists') {
             navigate("/signup");
-          } else if (res.data === 'Successfully Authenticated') {
+          } else if (res === 'Successfully Authenticated') {
             navigate('/profile');
           }
         })
@@ -40,9 +37,9 @@ function Login() {
         });
     };
 
-    const googleLogin = () => {
-        window.open('https://ecom-app-server.vercel.app/auth/google', '_self');
-      }
+    // const googleLogin = () => {
+    //     window.open('https://ecom-app-server.vercel.app/auth/google', '_self');
+    // }
 
   return (
     <div className='overflow-hidden'>
@@ -87,9 +84,7 @@ function Login() {
 
                 <p>Sign in with social platforms</p>
                 <div className='flex gap-5'>
-                    {/* <AiFillTwitterCircle size='3em' className='hover:cursor-pointer hover:text-grey'/> */}
-                    <AiFillGoogleCircle size='3em' className='hover:cursor-pointer hover:text-grey' onClick={googleLogin}/>
-                    {/* <IoLogoFacebook size='3em' className='hover:cursor-pointer hover:text-grey'/> */}
+                    <AiFillGoogleCircle size='3em' className='hover:cursor-pointer hover:text-grey'/>
                 </div>
 
                 <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>

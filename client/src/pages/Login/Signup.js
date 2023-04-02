@@ -5,9 +5,10 @@ import { FaLock, FaUser } from 'react-icons/fa'
 import { AiFillTwitterCircle, AiFillGoogleCircle } from 'react-icons/ai'
 import { IoLogoFacebook } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { register } from '../../api/auth'
 import { useNavigate } from 'react-router-dom'
+import { getUser } from '../../api/auth'
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -17,26 +18,28 @@ function Login() {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        getUser()
+        .then((user) => {
+          if (user) {
+            navigate('/profile')
+          }
+        })
+        .catch((err) => console.log(err));
+      }, [])
+
     const handleClick = () => {
-        axios({
-            method: 'POST',
-            data: {
-              email: email,
-              password: password,
-              confirmPassword: confirmPassword,
-            },
-            withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/register',
-          }).then((res) => {
-            setDataRes(res.data);
-            console.log(res.data);
-            if (res.data === 'User successfully created!') {
-                navigate('/login');
+        register(email, password, confirmPassword)
+        .then((res) => {
+            setDataRes(res);
+            if (res === 'User successfully created and authenticated') {
+                navigate('/profile');
             }
-          })
-          .catch((err) => {
+            dataRes(res);
+        })
+        .catch((err) => {
             console.log(err);
-          });
+        });
     }
 
   return (

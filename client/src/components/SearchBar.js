@@ -2,11 +2,11 @@ import React from 'react'
 import { ImSearch } from 'react-icons/im';
 import { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getProducts, cart } from '../api/product';
 
-function SearchBar({hover_color = 'white'}) {
+function SearchBar() {
     const [searchClicked, setSearchClicked] = useState(false)
     const [products, setProducts] = useState([]);
     const [research, setResearch] = useState('');
@@ -18,12 +18,8 @@ function SearchBar({hover_color = 'white'}) {
     }
 
     useEffect(() => {
-        axios({
-            method: 'GET',
-            withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/products'
-        })
-        .then((res) => setProducts(res.data))
+        getProducts()
+        .then((res) => setProducts(res))
         .catch((err) => console.log(err));
     }, [])
 
@@ -31,20 +27,12 @@ function SearchBar({hover_color = 'white'}) {
         setResearch(e.target.value.toLowerCase());
         const matchingProducts = products.filter(item => item.name.toLowerCase().includes(research));
         setQuery(matchingProducts);
-        console.log(query);
     }
 
-    function addToCart(id){
-        axios({
-            method: 'POST',
-            data: {
-                id: id,
-            },
-            withCredentials: true,
-            url: 'https://ecom-app-server.vercel.app/cart',
-        })
+    function addToCart(productId){
+        cart(productId)
         .then((res) => {
-            if (res.data === 'not login') {
+            if (res === 'not login') {
                 navigate('/login');
             }
         })

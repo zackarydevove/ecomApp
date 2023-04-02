@@ -7,12 +7,10 @@ import SearchBar from './SearchBar';
 import Cart from './Cart';
 import { useState } from 'react';
 
-function Navbar({userCart = [], total = 0, hover_color = 'white'}) {
+function Navbar({update, hover_color = 'white'}) {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    console.log(hover_color);
 
-    console.log(open);
     if (hover_color === 'black') {
         return (
             <div className='w-screen flex flex-col'>
@@ -44,7 +42,7 @@ function Navbar({userCart = [], total = 0, hover_color = 'white'}) {
                             onClick={() => navigate('/profile')}>
                             <BsFillPersonFill size='3em' className='hover:text-grey'/>
                         </div>
-                        <Cart userCart={userCart} total={total}/>
+                        <Cart update={update}/>
                     </div>
                 </div>
                 {
@@ -104,7 +102,7 @@ function Navbar({userCart = [], total = 0, hover_color = 'white'}) {
                             onClick={() => navigate('/profile')}>
                             <BsFillPersonFill size='3em' className='hover:text-grey'/>
                         </div>
-                        <Cart userCart={userCart} total={total}/>
+                        <Cart update={update} />
                     </div>
                 </div>
                 {
