@@ -7,7 +7,7 @@ import SearchBar from './SearchBar';
 import Cart from './Cart';
 import { useState } from 'react';
 
-function Navbar({update, hover_color = 'white'}) {
+function Navbar({update, hover_color}) {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -23,15 +23,15 @@ function Navbar({update, hover_color = 'white'}) {
                     }
                     <div className='sm:w-64 sm:h-10 z-10 bg-logo1_black bg-center bg-cover bg-no-repeat hover:cursor-pointer' onClick={() => navigate('/')}/>
                     <ul className='hidden lg:flex gap-6 z-10'>
-                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:footer hover:text-white rounded-full'
+                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                             onClick={() => navigate('/shop')}>
                             <li className='cursor-pointer'>SHOP</li>
                         </div>
-                        <div className={`w-auto h-10 p-5 flex justify-center items-center hover:footer hover:text-white rounded-full`}
+                        <div className={`w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full`}
                             onClick={() => navigate('/about')}>
                             <li className='cursor-pointer'>ABOUT</li>
                         </div>
-                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:footer hover:text-white rounded-full'
+                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                             onClick={() => navigate('/support')}>
                             <li className='cursor-pointer'>SUPPORT</li>
                         </div>
@@ -49,19 +49,19 @@ function Navbar({update, hover_color = 'white'}) {
                     open ?
                     <div className='lg:hidden w-screen h-screen bg-white z-[5] flex flex-col justify-start items-center absolute '>
                         <ul className='flex flex-col gap-10 mt-32'>
-                            <div className='sm:hidden w-auto h-10  p-5 flex justify-center items-center hover:footer hover:text-white rounded-full'
+                            <div className='sm:hidden w-auto h-10  p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                                 onClick={() => navigate('/')}>
                                 <li className='cursor-pointer text-5xl'>HOME</li>
                             </div>
-                            <div className='w-auto h-10  p-5 flex justify-center items-center hover:footer hover:text-white rounded-full'
+                            <div className='w-auto h-10  p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                                 onClick={() => navigate('/shop')}>
                                 <li className='cursor-pointer text-5xl'>SHOP</li>
                             </div>
-                            <div className={`w-auto h-10 p-5 flex justify-center items-center hover:footer hover:text-white rounded-full`}
+                            <div className={`w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full`}
                                 onClick={() => navigate('/about')}>
                                 <li className='cursor-pointer text-5xl'>ABOUT</li>
                             </div>
-                            <div className='w-auto h-10 p-5 flex justify-center items-center hover:footer hover:text-white rounded-full'
+                            <div className='w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                                 onClick={() => navigate('/support')}>
                                 <li className='cursor-pointer text-5xl'>SUPPORT</li>
                             </div>
@@ -83,15 +83,15 @@ function Navbar({update, hover_color = 'white'}) {
                     }
                     <div className='sm:w-64 sm:h-10 z-10 bg-logo1_black bg-center bg-cover bg-no-repeat hover:cursor-pointer' onClick={() => navigate('/')}/>
                     <ul className='hidden lg:flex gap-6 z-10'>
-                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:white rounded-full'
+                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:bg-white rounded-full'
                             onClick={() => navigate('/shop')}>
                             <li className='cursor-pointer'>SHOP</li>
                         </div>
-                        <div className={`w-auto h-10 p-5 flex justify-center items-center hover:white rounded-full`}
+                        <div className={`w-auto h-10 p-5 flex justify-center items-center hover:bg-white rounded-full`}
                             onClick={() => navigate('/about')}>
                             <li className='cursor-pointer'>ABOUT</li>
                         </div>
-                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:white rounded-full'
+                        <div className='w-auto h-10 p-5 flex justify-center items-center hover:bg-white rounded-full'
                             onClick={() => navigate('/support')}>
                             <li className='cursor-pointer'>SUPPORT</li>
                         </div>
@@ -109,19 +109,19 @@ function Navbar({update, hover_color = 'white'}) {
                     open ?
                     <div className='lg:hidden w-screen h-screen bg-white z-[5] flex flex-col justify-start items-center absolute '>
                         <ul className='flex flex-col gap-10 mt-32'>
-                            <div className='sm:hidden w-auto h-10  p-5 flex justify-center items-center hover:white rounded-full'
+                            <div className='sm:hidden w-auto h-10  p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                                 onClick={() => navigate('/')}>
                                 <li className='cursor-pointer text-5xl'>HOME</li>
                             </div>
-                            <div className='w-auto h-10  p-5 flex justify-center items-center hover:white rounded-full'
+                            <div className='w-auto h-10  p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                                 onClick={() => navigate('/shop')}>
                                 <li className='cursor-pointer text-5xl'>SHOP</li>
                             </div>
-                            <div className={`w-auto h-10 p-5 flex justify-center items-center hover:white rounded-full`}
+                            <div className={`w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full`}
                                 onClick={() => navigate('/about')}>
                                 <li className='cursor-pointer text-5xl'>ABOUT</li>
                             </div>
-                            <div className='w-auto h-10 p-5 flex justify-center items-center hover:white rounded-full'
+                            <div className='w-auto h-10 p-5 flex justify-center items-center hover:bg-footer hover:text-white rounded-full'
                                 onClick={() => navigate('/support')}>
                                 <li className='cursor-pointer text-5xl'>SUPPORT</li>
                             </div>
