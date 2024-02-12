@@ -1,5 +1,5 @@
 <h1>Zacktech E-commerce Website</h1>
-This is an E-commerce website called Zacktech! The UI is inspired by Logitech, implemented with the MERN Stack and Tailwind, authentication using JWT,  Stripe for payment processing, and more features you can see down below
+This is an E-commerce website called Zacktech! The UI is inspired by Logitech, implemented with the MERN Stack and Tailwind, authentication using JWT,  Stripe for payment processing, and more features you can see down below.
 
 <h2>Demo</h2>
 You can check out a live demo of the project <a href="https://ecom-app-server.vercel.app/" target="_blank">here</a>.
